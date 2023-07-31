@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Myapp.Models.employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employees Management</h1>
+
+<p>
+    <a asp-action="Create"><i class="fa fa-add"></i>Add New Employee</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom_Prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Matricule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom_Groupe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nr_Groupe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technicien)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom_Prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom_Groupe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nr_Groupe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Technicien)
+            </td>
+            <td>
+                    <a asp-controller="employees" asp-action="Edit" asp-route-id="@Convert.ToInt32(@item.Nr_Personne)" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</a> |
+                    <a asp-controller="employees" asp-action="Details" asp-route-id="@Convert.ToInt32(@item.Nr_Personne)" class="btn btn-secondary"><i class="fa fa-eye"></i>Details</a> |
+                    <a asp-controller="employees" asp-action="Delete" asp-route-id="@Convert.ToInt32(@item.Nr_Personne)" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
